@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teen Startup Finder — Find Your First Business Idea</title>
+  <meta name="description" content="Discover real online businesses you can start as a teen — no money, no experience, no excuses. Join the waitlist for early access." />
+  <meta property="og:title" content="Teen Startup Finder" />
+  <meta property="og:description" content="Find your first online business idea. Built for teens. 100% free to start." />
+  <meta property="og:image" content="/public/logo.png" />
+  <meta name="theme-color" content="#6C47FF" />
+  <link rel="icon" href="/public/logo.png" type="image/png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav class="nav">
+    <div class="nav__inner">
+      <a href="#" class="nav__brand">
+        <img src="/public/logo.png" alt="Teen Startup Finder" class="nav__logo" />
+        <span class="nav__name">Teen Startup Finder</span>
+      </a>
+      <a href="#waitlist" class="btn btn-primary nav__cta">Get Early Access</a>
+    </div>
+  </nav>
+
+  <!-- ── Stars ── -->
+  <div class="stars" aria-hidden="true"></div>
+
+  <!-- ── Orbs ── -->
+  <div class="orb orb--purple" aria-hidden="true"></div>
+  <div class="orb orb--green" aria-hidden="true"></div>
+
+  <!-- ════════════════════════════════
+       HERO
+  ════════════════════════════════ -->
+  <section class="hero">
+    <div class="container">
+
+      <div class="hero__badge">
+        🚀 Early Access — Be one of the first teens to use this
+      </div>
+
+      <h1 class="hero__headline">
+        Your first business<br />
+        <span class="gradient-text">starts here.</span>
+      </h1>
+
+      <p class="hero__tagline">
+        Discover real online businesses you can start today —<br class="hide-mobile" />
+        no money, no experience, no excuses.
+      </p>
+
+      <div class="hero__pills">
+        <span class="pill">100% Free</span>
+        <span class="pill">Teen-Friendly</span>
+        <span class="pill">No Experience Needed</span>
+      </div>
+
+      <!-- Waitlist form -->
+      <form class="waitlist-form" id="hero-form">
+        <div class="waitlist-form__row">
+          <input
+            type="email"
+            class="waitlist-form__input"
+            placeholder="Enter your email address"
+            id="hero-email"
+            required
+            autocomplete="email"
+          />
+          <button type="submit" class="btn btn-primary waitlist-form__btn" id="hero-btn">
+            Join the Waitlist
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+        <p class="waitlist-form__message" id="hero-msg"></p>
+      </form>
+
+      <p class="hero__counter">
+        Join <span id="waitlist-count" class="hero__counter-num">—</span> teens already on the waitlist
+      </p>
+
+      <!-- Stat cards -->
+      <div class="stat-cards">
+        <div class="stat-card">
+          <span class="stat-card__num">50+</span>
+          <span class="stat-card__label">Business Ideas</span>
+        </div>
+        <div class="stat-card stat-card--accent">
+          <span class="stat-card__num">$0</span>
+          <span class="stat-card__label">To Start</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-card__num">30+</span>
+          <span class="stat-card__label">Badges to Earn</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       FEATURES
+  ════════════════════════════════ -->
+  <section class="features" id="features">
+    <div class="container">
+      <h2 class="section-title">Everything you need to <span class="gradient-text">launch</span></h2>
+      <p class="section-sub">Built specifically for teens who want to make real money online.</p>
+
+      <div class="features__grid">
+
+        <div class="feature-card">
+          <div class="feature-card__icon">💡</div>
+          <h3 class="feature-card__title">50+ Business Ideas</h3>
+          <p class="feature-card__desc">
+            Curated online businesses perfect for teens — from freelancing and content creation to digital products and reselling.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🗺️</div>
+          <h3 class="feature-card__title">Step-by-Step Roadmaps</h3>
+          <p class="feature-card__desc">
+            Every idea comes with a clear roadmap to your first dollar. No guessing — just follow the steps.
+          </p>
+        </div>
+
+        <div class="feature-card feature-card--accent">
+          <div class="feature-card__icon">🤖</div>
+          <h3 class="feature-card__title">AI Business Coach</h3>
+          <p class="feature-card__desc">
+            Ask anything — your personal AI coach answers questions, helps you strategize, and keeps you on track 24/7.
+          </p>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-card__icon">🔥</div>
+          <h3 class="feature-card__title">Streaks & Badges</h3>
+          <p class="feature-card__desc">
+            Stay motivated with daily streaks, 30+ achievement badges, and progress tracking to celebrate every milestone.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       PRICING PREVIEW
+  ════════════════════════════════ -->
+  <section class="pricing" id="pricing">
+    <div class="container">
+      <h2 class="section-title">Simple, <span class="gradient-text">transparent</span> pricing</h2>
+      <p class="section-sub">Start free. Upgrade when you're ready.</p>
+
+      <div class="pricing__grid">
+
+        <div class="pricing-card">
+          <div class="pricing-card__plan">Free</div>
+          <div class="pricing-card__price">$0<span>/mo</span></div>
+          <ul class="pricing-card__features">
+            <li>✓ Browse all business ideas</li>
+            <li>✓ Basic roadmaps</li>
+            <li>✓ Track your favorites</li>
+            <li>✓ Daily streak</li>
+          </ul>
+          <div class="pricing-card__cta">Always Free</div>
+        </div>
+
+        <div class="pricing-card pricing-card--popular">
+          <div class="pricing-card__badge">Most Popular</div>
+          <div class="pricing-card__plan">Starter</div>
+          <div class="pricing-card__price">$3<span>/mo</span></div>
+          <ul class="pricing-card__features">
+            <li>✓ Everything in Free</li>
+            <li>✓ Full roadmaps + resources</li>
+            <li>✓ AI coach (50 msgs/day)</li>
+            <li>✓ Earnings tracker</li>
+          </ul>
+          <div class="pricing-card__cta pricing-card__cta--coming">Coming Soon</div>
+        </div>
+
+        <div class="pricing-card">
+          <div class="pricing-card__plan">Pro</div>
+          <div class="pricing-card__price">$8<span>/mo</span></div>
+          <ul class="pricing-card__features">
+            <li>✓ Everything in Starter</li>
+            <li>✓ Unlimited AI coach</li>
+            <li>✓ Priority new ideas</li>
+            <li>✓ Early feature access</li>
+          </ul>
+          <div class="pricing-card__cta pricing-card__cta--coming">Coming Soon</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       BOTTOM CTA
+  ════════════════════════════════ -->
+  <section class="cta-section" id="waitlist">
+    <div class="container">
+      <div class="cta-card">
+        <div class="orb orb--purple orb--small" aria-hidden="true"></div>
+
+        <h2 class="cta-card__title">
+          Ready to start your<br /><span class="gradient-text">first business?</span>
+        </h2>
+        <p class="cta-card__sub">
+          Join the waitlist and be first to get access when we launch.<br class="hide-mobile" />
+          Early members get exclusive perks.
+        </p>
+
+        <form class="waitlist-form waitlist-form--centered" id="bottom-form">
+          <div class="waitlist-form__row waitlist-form__row--centered">
+            <input
+              type="email"
+              class="waitlist-form__input"
+              placeholder="Enter your email address"
+              id="bottom-email"
+              required
+              autocomplete="email"
+            />
+            <button type="submit" class="btn btn-primary waitlist-form__btn" id="bottom-btn">
+              Get Early Access
+            </button>
+          </div>
+          <p class="waitlist-form__message" id="bottom-msg"></p>
+        </form>
+
+        <p class="cta-card__note">No spam, ever. Unsubscribe any time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
+       FOOTER
+  ════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="/public/logo.png" alt="Teen Startup Finder" class="footer__logo" />
+        <span class="footer__name">Teen Startup Finder</span>
+      </div>
+
+      <div class="footer__links">
+        <a href="https://instagram.com/teenstartupfinder" target="_blank" rel="noopener" class="footer__link" aria-label="Instagram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://x.com/teenstartupfind" target="_blank" rel="noopener" class="footer__link" aria-label="X / Twitter">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="mailto:contact@teenstartupfinder.com" class="footer__link" aria-label="Email">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+      </div>
+
+      <p class="footer__copy">© 2025 Teen Startup Finder. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
