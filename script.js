@@ -108,21 +108,36 @@ async function handleSuggest() {
   const originalHTML = btnEl.innerHTML
   btnEl.innerHTML = 'Sending…'
   msgEl.textContent = ''
+  msgEl.className = 'suggest-form__message'
 
   try {
-    // Send suggestion as a simple email via mailto OR just confirm visually
-    // (No backend endpoint needed — idea lands in contact inbox)
-    const subject = encodeURIComponent('Business Idea Suggestion — Teen Startup Finder')
-    const body = encodeURIComponent(`Suggested idea: ${idea}`)
-    window.open(`mailto:contact@teenstartupfinder.com?subject=${subject}&body=${body}`)
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 10000)
+
+    const res = await fetch('/api/feedback', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type: 'idea', message: idea, source: 'landing' }),
+      signal: controller.signal,
+    })
+    clearTimeout(timeout)
+
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}))
+      throw new Error(data.error || 'Something went wrong')
+    }
 
     ideaEl.value = ''
-    msgEl.textContent = '✓ Thanks! Your email app should open — just hit send. 🙏'
-    msgEl.style.color = 'var(--green)'
-    btnEl.innerHTML = '✓ Suggested!'
-  } catch (_) {
-    msgEl.textContent = 'Something went wrong. Try emailing contact@teenstartupfinder.com directly.'
-    msgEl.style.color = '#ff8080'
+    msgEl.textContent = '✓ Idea submitted! We review every suggestion. 🙏'
+    msgEl.classList.add('success')
+    btnEl.innerHTML = '✓ Sent!'
+  } catch (err) {
+    if (err.name === 'AbortError') {
+      msgEl.textContent = 'Request timed out. Please try again.'
+    } else {
+      msgEl.textContent = err.message || 'Something went wrong. Try again.'
+    }
+    msgEl.classList.add('error')
     btnEl.disabled = false
     btnEl.innerHTML = originalHTML
   }
