@@ -80,7 +80,6 @@ async function handleSubmit(emailId, btnId, msgId) {
       // Update live counter with animation
       const countEl = document.getElementById('waitlist-count')
       if (countEl && data.count != null) {
-        const prev = parseInt(countEl.textContent.replace(/,/g, '')) || 0
         animateCount(countEl, data.count)
       }
     }
