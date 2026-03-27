@@ -16,12 +16,51 @@
   <meta name="twitter:description" content="Find your first online business idea. Built for teens. 100% free to start." />
   <meta name="twitter:image" content="https://teenstartupfinder.com/public/logo.png" />
   <meta name="theme-color" content="#6C47FF" />
-  <link rel="icon" href="/public/logo.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/public/logo.png" />
+  <meta property="og:site_name" content="Teen Startup Finder" />
+  <link rel="icon" href="/favicon.png" type="image/png" />
+  <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+
+  <!-- Structured data: tells Google the site name + logo -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://teenstartupfinder.com/#website",
+        "url": "https://teenstartupfinder.com",
+        "name": "Teen Startup Finder",
+        "description": "Discover real online businesses you can start as a teen — no money, no experience, no excuses.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://teenstartupfinder.com/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://teenstartupfinder.com/#organization",
+        "name": "Teen Startup Finder",
+        "url": "https://teenstartupfinder.com",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://teenstartupfinder.com/favicon.png",
+          "width": 512,
+          "height": 512
+        },
+        "sameAs": [
+          "https://instagram.com/teenstartupfinder",
+          "https://x.com/TSFinderApp"
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
