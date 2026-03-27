@@ -654,6 +654,13 @@ body {
 
 .footer__link:hover { color: var(--text); }
 
+.footer__link--disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  display: flex;
+  align-items: center;
+}
+
 .footer__copy {
   font-size: 0.82rem;
   color: var(--text-muted);
