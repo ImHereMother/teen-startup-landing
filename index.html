@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <title>Teen Startup Finder — Find Your First Business Idea</title>
   <meta name="description" content="Discover real online businesses you can start as a teen — no money, no experience, no excuses. Join the waitlist for early access." />
   <meta property="og:title" content="Teen Startup Finder — Find Your First Business Idea" />
@@ -209,10 +209,11 @@
           <div class="pricing-card__plan">Free</div>
           <div class="pricing-card__price">$0<span>/mo</span></div>
           <ul class="pricing-card__features">
-            <li>✓ Browse all business ideas</li>
-            <li>✓ Basic roadmaps</li>
-            <li>✓ Track your favorites</li>
-            <li>✓ Daily streak</li>
+            <li>✓ 5 business ideas to explore</li>
+            <li>✓ Day 1 roadmap</li>
+            <li>✓ Save favourites & take quiz</li>
+            <li>✓ Daily streak + badges</li>
+            <li>✓ 3 free AI coach messages</li>
           </ul>
           <div class="pricing-card__cta">Always Free</div>
         </div>
@@ -222,10 +223,11 @@
           <div class="pricing-card__plan">Starter</div>
           <div class="pricing-card__price">$3<span>/mo</span></div>
           <ul class="pricing-card__features">
-            <li>✓ Everything in Free</li>
-            <li>✓ Full roadmaps + resources</li>
-            <li>✓ AI coach (50 msgs/day)</li>
-            <li>✓ Earnings tracker</li>
+            <li>✓ 30 business ideas</li>
+            <li>✓ Full roadmaps + guides</li>
+            <li>✓ 20 AI coach messages/month</li>
+            <li>✓ Tasks, earnings & goal tracker</li>
+            <li>✓ All filters unlocked</li>
           </ul>
           <div class="pricing-card__cta pricing-card__cta--coming">Coming Soon</div>
         </div>
@@ -234,10 +236,11 @@
           <div class="pricing-card__plan">Pro</div>
           <div class="pricing-card__price">$8<span>/mo</span></div>
           <ul class="pricing-card__features">
-            <li>✓ Everything in Starter</li>
+            <li>✓ All 50+ business ideas</li>
             <li>✓ Unlimited AI coach</li>
-            <li>✓ Priority new ideas</li>
-            <li>✓ Early feature access</li>
+            <li>✓ Full roadmap to Year 3</li>
+            <li>✓ Everything in Starter</li>
+            <li>✓ Priority new ideas &amp; features</li>
           </ul>
           <div class="pricing-card__cta pricing-card__cta--coming">Coming Soon</div>
         </div>
@@ -285,6 +288,38 @@
   </section>
 
   <!-- ════════════════════════════════
+       SUGGEST AN IDEA
+  ════════════════════════════════ -->
+  <section class="suggest" id="suggest">
+    <div class="container">
+      <div class="suggest-card">
+        <div class="suggest-card__icon">💡</div>
+        <h2 class="suggest-card__title">Got a business idea we should add?</h2>
+        <p class="suggest-card__sub">
+          We're always looking for new ideas. If you know a great online business that works for teens, tell us!
+        </p>
+        <form class="suggest-form" id="suggest-form">
+          <div class="suggest-form__row">
+            <input
+              type="text"
+              class="suggest-form__input"
+              placeholder="e.g. TikTok UGC creator, AI Prompt Selling..."
+              id="suggest-idea"
+              maxlength="120"
+              required
+              autocomplete="off"
+            />
+            <button type="submit" class="btn btn-secondary suggest-form__btn" id="suggest-btn">
+              Submit →
+            </button>
+          </div>
+          <p class="suggest-form__message" id="suggest-msg"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════
        FOOTER
   ════════════════════════════════ -->
   <footer class="footer">
@@ -301,9 +336,15 @@
         <a href="https://x.com/TSFinderApp" target="_blank" rel="noopener" class="footer__link" aria-label="X / Twitter">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
         </a>
-        <span class="footer__link footer__link--disabled" aria-label="Email coming soon" title="Email coming soon">
+        <a href="mailto:contact@teenstartupfinder.com" class="footer__link" aria-label="Email">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        </span>
+        </a>
+      </div>
+
+      <div class="footer__meta">
+        <a href="mailto:contact@teenstartupfinder.com?subject=Bug%20Report" class="footer__text-link">Report a Bug</a>
+        <span class="footer__dot">·</span>
+        <a href="mailto:contact@teenstartupfinder.com" class="footer__text-link">Contact</a>
       </div>
 
       <p class="footer__copy">© 2026 Teen Startup Finder. All rights reserved.</p>
@@ -311,5 +352,18 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Block pinch-zoom on iOS Safari (ignores user-scalable=no since iOS 10)
+    document.addEventListener('touchmove', function(e) {
+      if (e.touches.length > 1) e.preventDefault()
+    }, { passive: false })
+    // Block double-tap zoom
+    var _lte = 0
+    document.addEventListener('touchend', function(e) {
+      var now = Date.now()
+      if (now - _lte < 300) e.preventDefault()
+      _lte = now
+    }, { passive: false })
+  </script>
 </body>
 </html>

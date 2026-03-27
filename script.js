@@ -95,6 +95,39 @@ async function handleSubmit(emailId, btnId, msgId) {
   }
 }
 
+// ── Suggest an idea handler ──
+async function handleSuggest() {
+  const ideaEl = document.getElementById('suggest-idea')
+  const btnEl  = document.getElementById('suggest-btn')
+  const msgEl  = document.getElementById('suggest-msg')
+
+  const idea = ideaEl.value.trim()
+  if (!idea) return
+
+  btnEl.disabled = true
+  const originalHTML = btnEl.innerHTML
+  btnEl.innerHTML = 'Sending…'
+  msgEl.textContent = ''
+
+  try {
+    // Send suggestion as a simple email via mailto OR just confirm visually
+    // (No backend endpoint needed — idea lands in contact inbox)
+    const subject = encodeURIComponent('Business Idea Suggestion — Teen Startup Finder')
+    const body = encodeURIComponent(`Suggested idea: ${idea}`)
+    window.open(`mailto:contact@teenstartupfinder.com?subject=${subject}&body=${body}`)
+
+    ideaEl.value = ''
+    msgEl.textContent = '✓ Thanks! Your email app should open — just hit send. 🙏'
+    msgEl.style.color = 'var(--green)'
+    btnEl.innerHTML = '✓ Suggested!'
+  } catch (_) {
+    msgEl.textContent = 'Something went wrong. Try emailing contact@teenstartupfinder.com directly.'
+    msgEl.style.color = '#ff8080'
+    btnEl.disabled = false
+    btnEl.innerHTML = originalHTML
+  }
+}
+
 // ── Bind forms ──
 document.getElementById('hero-form').addEventListener('submit', (e) => {
   e.preventDefault()
@@ -104,6 +137,11 @@ document.getElementById('hero-form').addEventListener('submit', (e) => {
 document.getElementById('bottom-form').addEventListener('submit', (e) => {
   e.preventDefault()
   handleSubmit('bottom-email', 'bottom-btn', 'bottom-msg')
+})
+
+document.getElementById('suggest-form').addEventListener('submit', (e) => {
+  e.preventDefault()
+  handleSuggest()
 })
 
 // ── Load count on page ready ──

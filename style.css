@@ -26,6 +26,9 @@
 html {
   scroll-behavior: smooth;
   touch-action: pan-x pan-y;
+  /* Fix iOS overscroll: makes the elastic-bounce area match the page background */
+  background: #0a0a0f;
+  overscroll-behavior-y: auto;
 }
 
 body {
@@ -350,6 +353,7 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  overflow: hidden;
   padding: 20px 32px;
   display: flex;
   flex-direction: column;
@@ -422,6 +426,9 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
+  overflow: hidden;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
   padding: 28px 24px;
   transition: 0.2s ease;
 }
@@ -482,6 +489,10 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
+  /* Force GPU compositing for crisp rounded corners on mobile */
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   padding: 32px 28px;
   position: relative;
   transition: 0.2s ease;
@@ -607,6 +618,102 @@ body {
 }
 
 /* ════════════════════════════════
+   SUGGEST AN IDEA
+════════════════════════════════ */
+.suggest {
+  position: relative;
+  z-index: 1;
+  padding: 40px 0 80px;
+}
+
+.suggest-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  padding: 48px 40px;
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.suggest-card__icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+}
+
+.suggest-card__title {
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  font-weight: 800;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.suggest-card__sub {
+  font-size: 0.95rem;
+  color: var(--text-sec);
+  margin-bottom: 28px;
+  line-height: 1.6;
+}
+
+.suggest-form__row {
+  display: flex;
+  gap: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.suggest-form__input {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--border-acc);
+  border-radius: 100px;
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 13px 20px;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.suggest-form__input:focus {
+  border-color: var(--purple);
+}
+
+.suggest-form__input::placeholder {
+  color: var(--text-muted);
+}
+
+.btn-secondary {
+  background: rgba(108, 71, 255, 0.12);
+  color: var(--purple);
+  border: 1px solid rgba(108, 71, 255, 0.35);
+  padding: 13px 24px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.btn-secondary:hover {
+  background: rgba(108, 71, 255, 0.2);
+  border-color: var(--purple);
+  transform: translateY(-1px);
+}
+
+.suggest-form__message {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: var(--green);
+  min-height: 18px;
+}
+
+@media (max-width: 640px) {
+  .suggest-card { padding: 32px 24px; }
+  .suggest-form__row { flex-direction: column; }
+  .suggest-form__input,
+  .suggest-form__btn { width: 100%; border-radius: var(--radius-md); }
+}
+
+/* ════════════════════════════════
    FOOTER
 ════════════════════════════════ */
 .footer {
@@ -663,6 +770,30 @@ body {
   cursor: not-allowed;
   display: flex;
   align-items: center;
+}
+
+.footer__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.footer__text-link {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer__text-link:hover { color: var(--text-sec); }
+
+.footer__dot {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  opacity: 0.5;
 }
 
 .footer__copy {
