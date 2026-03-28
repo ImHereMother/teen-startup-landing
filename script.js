@@ -33,7 +33,7 @@ async function loadCount() {
 }
 
 // ── Submit handler ──
-async function handleSubmit(emailId, btnId, msgId) {
+async function handleSubmit(emailId, btnId, msgId, type) {
   const emailEl = document.getElementById(emailId)
   const btnEl   = document.getElementById(btnId)
   const msgEl   = document.getElementById(msgId)
@@ -48,6 +48,8 @@ async function handleSubmit(emailId, btnId, msgId) {
   msgEl.textContent = ''
   msgEl.className = 'waitlist-form__message'
 
+  const isEarlyAccess = type === 'early_access'
+
   try {
     const controller = new AbortController()
     const timeout = setTimeout(() => controller.abort(), 10000) // 10s timeout
@@ -55,7 +57,7 @@ async function handleSubmit(emailId, btnId, msgId) {
     const res = await fetch('/api/waitlist', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, type: type || 'waitlist' }),
       signal: controller.signal,
     })
     clearTimeout(timeout)
@@ -63,7 +65,9 @@ async function handleSubmit(emailId, btnId, msgId) {
     const data = await res.json()
 
     if (res.status === 409) {
-      msgEl.textContent = "You're already on the list! We'll be in touch. 🎉"
+      msgEl.textContent = isEarlyAccess
+        ? "You're already registered for early access! 🎉"
+        : "You're already on the list! We'll be in touch. 🎉"
       msgEl.classList.add('already')
       btnEl.disabled = false
       btnEl.innerHTML = originalHTML
@@ -74,7 +78,9 @@ async function handleSubmit(emailId, btnId, msgId) {
       btnEl.innerHTML = originalHTML
     } else {
       emailEl.value = ''
-      msgEl.textContent = "You're on the list! We'll email you when we launch. 🚀"
+      msgEl.textContent = isEarlyAccess
+        ? "You're in! We'll email you with tester access soon. 🚀"
+        : "You're on the list! We'll email you when we launch. 🚀"
       msgEl.classList.add('success')
       btnEl.innerHTML = '✓ Joined!'
       // Update live counter with animation
@@ -144,14 +150,16 @@ async function handleSuggest() {
 }
 
 // ── Bind forms ──
+// Hero form → regular waitlist
 document.getElementById('hero-form').addEventListener('submit', (e) => {
   e.preventDefault()
-  handleSubmit('hero-email', 'hero-btn', 'hero-msg')
+  handleSubmit('hero-email', 'hero-btn', 'hero-msg', 'waitlist')
 })
 
+// Bottom CTA form → early access (testers)
 document.getElementById('bottom-form').addEventListener('submit', (e) => {
   e.preventDefault()
-  handleSubmit('bottom-email', 'bottom-btn', 'bottom-msg')
+  handleSubmit('bottom-email', 'bottom-btn', 'bottom-msg', 'early_access')
 })
 
 document.getElementById('suggest-form').addEventListener('submit', (e) => {

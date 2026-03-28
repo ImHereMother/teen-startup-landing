@@ -21,8 +21,13 @@ async function ensureTable(client) {
     CREATE TABLE IF NOT EXISTS waitlist (
       id         SERIAL PRIMARY KEY,
       email      TEXT UNIQUE NOT NULL,
+      type       TEXT NOT NULL DEFAULT 'waitlist',
       created_at TIMESTAMPTZ DEFAULT NOW()
     )
+  `)
+  // Add type column to existing tables that don't have it yet
+  await client.query(`
+    ALTER TABLE waitlist ADD COLUMN IF NOT EXISTS type TEXT NOT NULL DEFAULT 'waitlist'
   `)
 }
 
@@ -35,7 +40,8 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end()
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' })
 
-  const { email } = req.body || {}
+  const { email, type } = req.body || {}
+  const signupType = type === 'early_access' ? 'early_access' : 'waitlist'
 
   // Basic validation
   if (!email || typeof email !== 'string') {
@@ -56,8 +62,8 @@ export default async function handler(req, res) {
     // Try to insert — unique constraint handles duplicates
     try {
       await client.query(
-        'INSERT INTO waitlist (email) VALUES ($1)',
-        [trimmed]
+        'INSERT INTO waitlist (email, type) VALUES ($1, $2)',
+        [trimmed, signupType]
       )
     } catch (err) {
       if (err.code === '23505') {
