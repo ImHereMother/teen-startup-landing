@@ -288,31 +288,33 @@
   </section>
 
   <!-- ════════════════════════════════
-       SUGGEST AN IDEA
+       SHARE FEEDBACK
   ════════════════════════════════ -->
   <section class="suggest" id="suggest">
     <div class="container">
       <div class="suggest-card">
-        <div class="suggest-card__icon">💡</div>
-        <h2 class="suggest-card__title">Suggest a business idea to add</h2>
+        <div class="suggest-card__icon">💬</div>
+        <h2 class="suggest-card__title">Got something on your mind?</h2>
         <p class="suggest-card__sub">
-          Know a real online business teens can start? Suggest it and we might add it to the app!
+          Business idea, feature request, random thought — drop it here. We read everything.
         </p>
         <form class="suggest-form" id="suggest-form">
-          <div class="suggest-form__row">
-            <input
-              type="text"
-              class="suggest-form__input"
-              placeholder="e.g. TikTok UGC creator, AI Prompt Selling..."
-              id="suggest-idea"
-              maxlength="120"
-              required
-              autocomplete="off"
-            />
-            <button type="submit" class="btn btn-secondary suggest-form__btn" id="suggest-btn">
-              Suggest →
-            </button>
+          <div class="suggest-type-pills" id="suggest-types" role="group" aria-label="Feedback type">
+            <button type="button" class="suggest-type-pill suggest-type-pill--active" data-type="idea">💡 Business idea</button>
+            <button type="button" class="suggest-type-pill" data-type="feature">✨ Feature idea</button>
+            <button type="button" class="suggest-type-pill" data-type="general">💬 Just a thought</button>
           </div>
+          <textarea
+            class="suggest-form__textarea"
+            placeholder="What's on your mind?"
+            id="suggest-message"
+            maxlength="1000"
+            rows="4"
+            required
+          ></textarea>
+          <button type="submit" class="btn btn-secondary suggest-form__btn" id="suggest-btn">
+            Send it →
+          </button>
           <p class="suggest-form__message" id="suggest-msg"></p>
         </form>
       </div>

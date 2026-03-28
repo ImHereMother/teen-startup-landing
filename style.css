@@ -618,7 +618,7 @@ body {
 }
 
 /* ════════════════════════════════
-   SUGGEST AN IDEA
+   SHARE FEEDBACK
 ════════════════════════════════ */
 .suggest {
   position: relative;
@@ -656,31 +656,62 @@ body {
   line-height: 1.6;
 }
 
-.suggest-form__row {
+/* Type pills */
+.suggest-type-pills {
   display: flex;
-  gap: 10px;
-  max-width: 500px;
-  margin: 0 auto;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
 }
 
-.suggest-form__input {
-  flex: 1;
+.suggest-type-pill {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-sec);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 7px 16px;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.suggest-type-pill:hover {
+  border-color: var(--purple);
+  color: var(--text);
+}
+
+.suggest-type-pill--active {
+  background: rgba(108, 71, 255, 0.15);
+  border-color: var(--purple);
+  color: var(--text);
+}
+
+/* Textarea */
+.suggest-form__textarea {
+  width: 100%;
   background: rgba(255,255,255,0.05);
   border: 1px solid var(--border-acc);
-  border-radius: 100px;
+  border-radius: var(--radius-md);
   color: var(--text);
   font-family: inherit;
   font-size: 0.95rem;
-  padding: 13px 20px;
+  padding: 14px 18px;
   outline: none;
+  resize: vertical;
+  min-height: 110px;
   transition: border-color 0.2s ease;
+  margin-bottom: 12px;
+  display: block;
 }
 
-.suggest-form__input:focus {
+.suggest-form__textarea:focus {
   border-color: var(--purple);
 }
 
-.suggest-form__input::placeholder {
+.suggest-form__textarea::placeholder {
   color: var(--text-muted);
 }
 
@@ -688,7 +719,7 @@ body {
   background: rgba(108, 71, 255, 0.12);
   color: var(--purple);
   border: 1px solid rgba(108, 71, 255, 0.35);
-  padding: 13px 24px;
+  padding: 13px 28px;
   border-radius: 100px;
   white-space: nowrap;
 }
@@ -711,9 +742,7 @@ body {
 
 @media (max-width: 640px) {
   .suggest-card { padding: 32px 24px; }
-  .suggest-form__row { flex-direction: column; }
-  .suggest-form__input,
-  .suggest-form__btn { width: 100%; border-radius: var(--radius-md); }
+  .suggest-form__btn { width: 100%; }
 }
 
 /* ════════════════════════════════

@@ -101,20 +101,33 @@ async function handleSubmit(emailId, btnId, msgId, type) {
   }
 }
 
-// ── Suggest an idea handler ──
-async function handleSuggest() {
-  const ideaEl = document.getElementById('suggest-idea')
-  const btnEl  = document.getElementById('suggest-btn')
-  const msgEl  = document.getElementById('suggest-msg')
+// ── Suggest type pills ──
+let suggestType = 'idea'
+document.querySelectorAll('.suggest-type-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    document.querySelectorAll('.suggest-type-pill').forEach(p => p.classList.remove('suggest-type-pill--active'))
+    pill.classList.add('suggest-type-pill--active')
+    suggestType = pill.dataset.type
+  })
+})
 
-  const idea = ideaEl.value.trim()
-  if (!idea) return
+// ── Suggest / feedback handler ──
+async function handleSuggest() {
+  const msgEl   = document.getElementById('suggest-message')
+  const btnEl   = document.getElementById('suggest-btn')
+  const statusEl = document.getElementById('suggest-msg')
+
+  const message = msgEl.value.trim()
+  if (!message) return
 
   btnEl.disabled = true
   const originalHTML = btnEl.innerHTML
   btnEl.innerHTML = 'Sending…'
-  msgEl.textContent = ''
-  msgEl.className = 'suggest-form__message'
+  statusEl.textContent = ''
+  statusEl.className = 'suggest-form__message'
+
+  const typeLabels = { idea: 'Business idea', feature: 'Feature idea', general: 'General' }
+  const labelledMessage = `[${typeLabels[suggestType] || 'Feedback'}] ${message}`
 
   try {
     const controller = new AbortController()
@@ -123,7 +136,7 @@ async function handleSuggest() {
     const res = await fetch('/api/feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'idea', message: idea, source: 'landing' }),
+      body: JSON.stringify({ type: 'idea', message: labelledMessage, source: 'landing' }),
       signal: controller.signal,
     })
     clearTimeout(timeout)
@@ -133,17 +146,17 @@ async function handleSuggest() {
       throw new Error(data.error || 'Something went wrong')
     }
 
-    ideaEl.value = ''
-    msgEl.textContent = '✓ Idea submitted! We review every suggestion. 🙏'
-    msgEl.classList.add('success')
+    msgEl.value = ''
+    statusEl.textContent = '✓ Got it! We read every single one. 🙏'
+    statusEl.classList.add('success')
     btnEl.innerHTML = '✓ Sent!'
   } catch (err) {
     if (err.name === 'AbortError') {
-      msgEl.textContent = 'Request timed out. Please try again.'
+      statusEl.textContent = 'Request timed out. Please try again.'
     } else {
-      msgEl.textContent = err.message || 'Something went wrong. Try again.'
+      statusEl.textContent = err.message || 'Something went wrong. Try again.'
     }
-    msgEl.classList.add('error')
+    statusEl.classList.add('error')
     btnEl.disabled = false
     btnEl.innerHTML = originalHTML
   }
