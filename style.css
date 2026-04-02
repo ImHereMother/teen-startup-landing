@@ -576,6 +576,18 @@ body {
   background: rgba(108, 71, 255, 0.06);
 }
 
+.pricing-card__cta--buy {
+  color: #fff;
+  text-decoration: none;
+  background: var(--gradient);
+  border-color: transparent;
+  cursor: pointer;
+  transition: opacity 0.18s;
+}
+.pricing-card__cta--buy:hover {
+  opacity: 0.88;
+}
+
 /* ════════════════════════════════
    BOTTOM CTA
 ════════════════════════════════ */
