@@ -80,7 +80,7 @@ async function handleSubmit(emailId, btnId, msgId, type) {
       emailEl.value = ''
       msgEl.textContent = isEarlyAccess
         ? "You're in! We'll email you with tester access soon. 🚀"
-        : "You're on the list! We'll email you when we launch. 🚀"
+        : "You're in! Check your email for early access details. 🚀"
       msgEl.classList.add('success')
       btnEl.innerHTML = '✓ Joined!'
       // Update live counter with animation
@@ -136,7 +136,7 @@ async function handleSuggest() {
     const res = await fetch('/api/feedback', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ type: 'idea', message: labelledMessage, source: 'landing' }),
+      body: JSON.stringify({ type: suggestType, message: labelledMessage, source: 'landing' }),
       signal: controller.signal,
     })
     clearTimeout(timeout)
